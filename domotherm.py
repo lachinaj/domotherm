@@ -11,7 +11,7 @@ from TimerReset import TimerReset
 class Thermostat(object):
     def Initialize(self):
         print "Initialize"
-        self.Config = Config.Config("domotherm.conf")
+        self.Config = Config.Config("/etc/domotherm.conf")
         self.Display = Display.Display()
         self.Display.bind_to(self.Button_Event)
         self.Screen = Screen.Screen()
