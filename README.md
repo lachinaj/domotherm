@@ -61,6 +61,22 @@ The Weather board has an environmental sensors can measure:
   </TR>
 </TABLE>
 
+## Install
+- Enable I2C on Raspberry: https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
+- Install: https://github.com/adafruit/Adafruit_SSD1306
+``` bash
+sudo cp domotherm.conf /etc/
+./domotherm.py
+```
+
+#### Install into service
+``` bash
+sudo cp domotherm /etc/init.d
+sudo systemctl daemon-reload
+sudo systemctl enable domotherm.service
+sudo systemctl start domotherm.service
+```
+
 ## ChangeLog
 #### Initial version
 - Communicate with WeatherBoard2
@@ -85,6 +101,7 @@ The Weather board has an environmental sensors can measure:
     - Auto BlackScreen
     - BlackScreen Time
     - Set GMT time
+    - Temperature Gain and Offset
   - Network configuration
     - SSID
     - IP
