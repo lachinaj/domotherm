@@ -11,7 +11,9 @@ class Config(object):
         self.config.set('Main', 'Language', 'English')
         self.config.set('Main', 'GMT', 0)
         self.config.set('Main', 'RequestTemperature', 21.0)
-        
+        self.config.set('Main', 'TemperatureOffset', 0.0)
+        self.config.set('Main', 'TemperatureGain', 1.0)
+
         self.config.add_section('BlackScreen')
         self.config.set('BlackScreen', 'Auto', True)
         self.config.set('BlackScreen', 'Time', 10)
@@ -47,6 +49,20 @@ class Config(object):
 
     def setRequestTemperature(self, value):
         self.config.set('Main', 'RequestTemperature', value)
+        self.save()
+
+    def getTemperatureOffset(self):
+        return self.config.get('Main', 'TemperatureOffset')
+
+    def setTemperatureOffset(self, value):
+        self.config.set('Main', 'TemperatureOffset', value)
+        self.save()
+
+    def getTemperatureGain(self):
+        return self.config.get('Main', 'TemperatureGain')
+
+    def setTemperatureGain(self, value):
+        self.config.set('Main', 'TemperatureGain', value)
         self.save()
 
     def getAutoBS(self):

@@ -15,7 +15,7 @@ class Thermostat(object):
         self.Display = Display.Display()
         self.Display.bind_to(self.Button_Event)
         self.Screen = Screen.Screen()
-        self.Weather = WeatherBoard2.WeatherBoard2()
+        self.Weather = WeatherBoard2.WeatherBoard2(self.Config.getTemperatureOffset(), self.Config.getTemperatureGain())
         self.PID = PID.PID(self)
         self.PID.RequestTemperature = float(self.Config.getRequestTemperature())
 

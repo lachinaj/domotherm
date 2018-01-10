@@ -6,6 +6,7 @@ def Print(thermostat):
     thermostat.Display.Print("SSID: " + Network.getSSID(), 0, 20)
     thermostat.Display.Print("IP: " + Network.getAddress(), 0, 30)
     thermostat.Display.Print("MAC: " + Network.getHwAddr(), 0, 40)
+    thermostat.Display.Print("Quality: " + Network.getQuality(), 0, 50)
 
 class Network(object):
     @staticmethod
@@ -36,6 +37,14 @@ class Network(object):
                       ssid = line.split('"')[1]
 
         return ssid
+
+    @staticmethod
+    def getQuality():
+        scanoutput = check_output(["iwlist", "wlan0", "scan"])
+        for line in scanoutput.split():
+            if line.startswith("Quality"):
+                quality = line.split('=')[1].split('/')
+        return str(int(round(float(quality[0]) / float(quality[1]) * 100))).rjust(3) + " %"
 
     @staticmethod
     def getHwAddr():
